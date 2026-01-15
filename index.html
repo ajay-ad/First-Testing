@@ -9,12 +9,10 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (From prep.html) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Poppins&family=Roboto&family=Open+Sans&family=Lato&family=Montserrat&family=Merriweather&family=Playfair+Display&family=Raleway&family=Noto+Sans+Devanagari&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Gotu&family=Hind:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&family=Martel:wght@300;400;700&family=Mukta:wght@300;400;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&family=Tiro+Devanagari+Hindi:ital@0;1&family=Yatra+One&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -45,6 +43,16 @@
                         'lg': '1024px',
                         'xl': '1280px',
                         '2xl': '1536px',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
                     }
                 }
             }
@@ -53,21 +61,21 @@
 
     <style>
         :root {
-            /* Light Theme */
-            --primary: #ea580c;
-            --secondary: #facc15;
-            --bg: #fff7ed;
-            --text: #1f2937;
+            /* Light Theme Defaults - Adopted from prep.html structure */
+            --primary: #ea580c;   /* Orange-600 */
+            --secondary: #facc15; /* Yellow-400 */
+            --bg: #fff7ed;        /* Orange-50 */
+            --text: #1f2937;      /* Gray-800 - Default Light Text */
 
             --glass: rgba(255, 255, 255, 0.25);
             --glass-border: rgba(255, 255, 255, 0.3);
 
             /* Fonts Defaults */
-            --heading-font: 'Yatra One';
-            --body-font: 'Poppins';
+            --font-primary: 'Noto Sans Devanagari';
+            --heading-font: var(--font-primary);
+            --body-font: var(--font-primary);
             --shloka-font: 'Noto Sans Devanagari';
-            --shloka-color: #facc15;
-            /* Default Yellow/Gold */
+            --shloka-color: #facc15; /* Default Yellow/Gold */
 
             --font-size-base: 16px;
 
@@ -75,12 +83,13 @@
             --side-nav-width: 260px;
         }
 
-        /* Dark Mode Override */
+        /* Dark Mode Override - Applied from prep.html logic */
         html.dark {
-            --bg: #0f172a;
-            --text: #f8fafc;
-            --glass: rgba(0, 0, 0, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --bg: #0a0a0a;        /* Neutral-950 (Deep Black) */
+            --text: #ffffff;      /* White (Absolute Contrast) */
+            --glass: rgba(20, 20, 20, 0.3); /* Darker glass */
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --primary: #fb923c;   /* Orange-400 (High visibility on black) */
         }
 
         /* Typography Mapping */
@@ -95,6 +104,21 @@
 
         body {
             font-family: var(--body-font), sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            font-size: var(--font-size-base);
+            /* Transition & Background Image from prep.html */
+            transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(234, 88, 12, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(234, 88, 12, 0.05) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        /* Selection Color */
+        ::selection {
+            background-color: var(--primary);
+            color: white;
         }
 
         .sanskrit {
@@ -111,13 +135,6 @@
             border: 1px solid var(--glass-border);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-size: var(--font-size-base);
-            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         /* Animations */
@@ -780,11 +797,11 @@
             <h2 class="text-2xl font-bold text-primary mb-4" data-key="contactTitle">संदेश भेजें</h2>
             <form onsubmit="handleContactSubmit(event)" class="space-y-4">
                 <input type="text" placeholder="Name" required
-                    class="w-full p-2 rounded border border-gray-300 dark:bg-black/40">
+                    class="w-full p-2 rounded border border-gray-300 dark:bg-black/40 text-black dark:text-white">
                 <input type="text" placeholder="Email/Phone" required
-                    class="w-full p-2 rounded border border-gray-300 dark:bg-black/40">
+                    class="w-full p-2 rounded border border-gray-300 dark:bg-black/40 text-black dark:text-white">
                 <textarea placeholder="Message" required
-                    class="w-full p-2 rounded border border-gray-300 dark:bg-black/40" rows="3"></textarea>
+                    class="w-full p-2 rounded border border-gray-300 dark:bg-black/40 text-black dark:text-white" rows="3"></textarea>
                 <button type="submit"
                     class="w-full bg-primary text-white font-bold py-2 rounded hover:bg-orange-700 transition">Send
                     Message</button>
@@ -801,11 +818,11 @@
             <p class="text-sm opacity-70 mb-4">Post your prayer to the Lord.</p>
             <form onsubmit="handleSankalpSubmit(event)" class="space-y-3 mb-6">
                 <input type="text" id="sankalp-name" placeholder="Your Name" required
-                    class="w-full p-2 rounded border border-gray-300 dark:bg-black/40">
+                    class="w-full p-2 rounded border border-gray-300 dark:bg-black/40 text-black dark:text-white">
                 <input type="text" id="sankalp-gotra" placeholder="Gotra (Optional)"
-                    class="w-full p-2 rounded border border-gray-300 dark:bg-black/40">
+                    class="w-full p-2 rounded border border-gray-300 dark:bg-black/40 text-black dark:text-white">
                 <textarea id="sankalp-wish" placeholder="Your Wish/Prayer..." required
-                    class="w-full p-2 rounded border border-gray-300 dark:bg-black/40" rows="2"></textarea>
+                    class="w-full p-2 rounded border border-gray-300 dark:bg-black/40 text-black dark:text-white" rows="2"></textarea>
                 <button type="submit"
                     class="w-full bg-secondary text-black font-bold py-2 rounded hover:bg-yellow-400 transition">Post
                     Sankalp</button>
@@ -828,7 +845,7 @@
             <div class="flex items-center border-b border-gray-400 pb-2 mb-4">
                 <i class="fas fa-search text-gray-500 mr-3"></i>
                 <input type="text" id="search-input" onkeyup="performSearch()" placeholder="Search site..."
-                    class="flex-grow bg-transparent outline-none text-lg">
+                    class="flex-grow bg-transparent outline-none text-lg text-black dark:text-white">
                 <button onclick="toggleSearch()" class="text-red-500"><i class="fas fa-times"></i></button>
             </div>
             <div id="search-results" class="max-h-60 overflow-y-auto space-y-2">
@@ -895,12 +912,12 @@
                 <div>
                     <label class="text-xs opacity-70" data-key="labelHeadFont">Heading Font</label>
                     <select onchange="updateCustomFont('heading', this.value)"
-                        class="font-select w-full p-2 rounded bg-white/50 border border-gray-400 dark:bg-black/50"></select>
+                        class="font-select w-full p-2 rounded bg-white/50 border border-gray-400 dark:bg-black/50 text-black dark:text-white"></select>
                 </div>
                 <div>
                     <label class="text-xs opacity-70" data-key="labelBodyFont">Body Font</label>
                     <select onchange="updateCustomFont('body', this.value)"
-                        class="font-select w-full p-2 rounded bg-white/50 border border-gray-400 dark:bg-black/50"></select>
+                        class="font-select w-full p-2 rounded bg-white/50 border border-gray-400 dark:bg-black/50 text-black dark:text-white"></select>
                 </div>
             </div>
 
@@ -953,7 +970,6 @@
                 <div id="top-nav-title-group" class="transition-all duration-300">
                     <h1 class="text-xl font-bold leading-none text-primary" data-key="templeName" id="nav-title">श्री
                         नृसिंह बड़ा मंदिर हसामपुर</h1>
-                    <p class="text-xs opacity-75">Hasampur</p>
                 </div>
 
                 <!-- Mobile Burger (Only visible in Side Nav Mode - Placed on FAR Right) -->
@@ -1011,14 +1027,13 @@
         <!-- ANNOUNCEMENT TICKER -->
         <div id="announcement-bar" class="ticker-wrap hide" data-feature="ticker">
             <div class="ticker" id="announcement-text">
-                🎉 Upcoming: Narsimha Jayanti Mela preparations are underway! Volunteers required. Please contact temple
-                administration. 🙏
+                🎉 Upcoming: Narsimha Jayanti Mela preparations are underway! 🙏
             </div>
         </div>
 
         <!-- SIDE NAVIGATION BAR (Modified for Resizability) -->
         <nav id="side-nav" style="width: var(--side-nav-width);"
-            class="fixed left-0 top-0 h-full glass-panel z-50 transform -translate-x-full transition-transform duration-300 flex flex-col p-6 hide shadow-2xl bg-white dark:bg-slate-900 overflow-y-auto">
+            class="fixed left-0 top-0 h-full glass-panel z-50 transform -translate-x-full transition-transform duration-300 flex flex-col p-6 hide shadow-2xl bg-white dark:bg-neutral-900 overflow-y-auto">
 
             <!-- Resizer Handle -->
             <div id="side-nav-resizer"></div>
@@ -1151,24 +1166,6 @@
                                     title="Offer Flowers (Pushpanjali)" data-feature="pushpanjali">
                                     <i class="fas fa-spa text-xl"></i>
                                 </button>
-                                <!-- FEATURE: VIRTUAL AARTI BUTTON -->
-                                <!-- <button onclick="toggleAartiMode()"
-                                    class="bg-orange-600 text-white font-bold p-3 scale-90 rounded-full shadow-lg hover:scale-95 transition border-2 border-white"
-                                    title="Perform Aarti" data-feature="aarti">
-                                    <i class="fas fa-fire-alt text-xl"></i>
-                                </button> -->
-                                <!-- NEW FEATURE: DEEP DAAN (Light a Lamp) -->
-                                <!-- <button onclick="toggleDeepDaan()"
-                                    class="bg-yellow-500 text-red-700 font-bold p-3 scale-90 rounded-full shadow-lg hover:scale-95 transition border-2 border-white"
-                                    title="Light a Lamp (Deep Daan)">
-                                    <i class="fas fa-lightbulb text-xl"></i>
-                                </button> -->
-                                <!-- NEW FEATURE: DIVINE ORACLE -->
-                                <!-- <button onclick="toggleOracle()"
-                                    class="bg-purple-600 text-white font-bold p-3 scale-90 rounded-full shadow-lg hover:scale-95 transition border-2 border-white"
-                                    title="Seek Guidance (Prabhu Sandesh)">
-                                    <i class="fas fa-question text-xl"></i>
-                                </button> -->
                             </div>
 
                             <div id="flower-container"></div>
@@ -1471,7 +1468,7 @@
                                 प्रकार</label>
                             <div class="relative">
                                 <select id="login-type"
-                                    class="w-full p-3 rounded bg-white dark:bg-gray-800 border border-gray-300">
+                                    class="w-full p-3 rounded bg-white dark:bg-gray-800 border border-gray-300 text-black dark:text-white">
                                     <option value="member">Member</option>
                                     <option value="admin">Admin</option>
                                 </select>
@@ -1481,7 +1478,7 @@
                             <label class="block mb-2 text-sm font-bold opacity-80"
                                 data-key="labelPassword">पासवर्ड</label>
                             <input type="password" id="password"
-                                class="w-full p-3 rounded bg-white dark:bg-gray-800 border border-gray-300">
+                                class="w-full p-3 rounded bg-white dark:bg-gray-800 border border-gray-300 text-black dark:text-white">
                         </div>
                         <button type="submit"
                             class="w-full bg-gradient-to-r from-primary to-orange-600 text-white font-bold py-3 rounded-lg"
@@ -1763,9 +1760,10 @@
             { id: 'slate', name: 'Slate', colors: { p: '#475569', s: '#94a3b8', bg: '#f8fafc', t: '#0f172a' } },
         ];
 
+        // Updated Fonts List (Matched with prep.html)
         const fonts = [
-            'Yatra One', 'Poppins', 'Roboto', 'Open Sans', 'Lato',
-            'Montserrat', 'Merriweather', 'Playfair Display', 'Raleway', 'Noto Sans Devanagari'
+            'Noto Sans Devanagari', 'Poppins', 'Mukta', 'Baloo 2', 'Yatra One', 
+            'Martel', 'Tiro Devanagari Hindi', 'Hind', 'Kalam', 'Gotu'
         ];
 
         const shlokas = [
@@ -1939,6 +1937,13 @@
                 document.getElementById('welcome-popup').classList.remove('hide');
                 setTimeout(() => document.getElementById('welcome-popup').classList.add('hide'), 8000);
             }, 1000);
+            
+            // Explicitly force dark mode reset on load to ensure text color is correct if system pref matches
+            if (document.documentElement.classList.contains('dark')) {
+               toggleDarkMode(); // Re-apply logic to ensure variables are correct
+               // Toggle back if it wasn't dark
+               if(!document.documentElement.classList.contains('dark')) toggleDarkMode(); 
+            }
         };
 
         // --- AUDIO PLAYER LOGIC ---
@@ -2774,7 +2779,7 @@
             const t = themes.find(x => x.id === themeId);
             const root = document.documentElement;
             root.style.setProperty('--primary', t.colors.p);
-            root.style.setProperty('--secondary', t.colors.s);
+            // In light mode, update background to theme bg, otherwise keep dark mode bg
             if (!root.classList.contains('dark')) {
                 root.style.setProperty('--bg', t.colors.bg);
                 root.style.setProperty('--text', t.colors.t);
@@ -2793,7 +2798,35 @@
             const style = window.getComputedStyle(root).getPropertyValue('--font-size-base');
             root.style.setProperty('--font-size-base', (parseInt(style) + delta) + 'px');
         }
-        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); applyTheme(state.theme); }
+
+        // Updated Dark Mode Logic to match prep.html exactly
+        function toggleDarkMode() { 
+            const root = document.documentElement;
+            root.classList.toggle('dark'); 
+            
+            // Explicit contrast handling like prep.html
+            if (root.classList.contains('dark')) {
+                // Force white text and dark background for best contrast
+                root.style.setProperty('--text', '#ffffff');
+                root.style.setProperty('--bg', '#0a0a0a');
+                // Ensure primary is visible on dark (Orange-400 from prep.html)
+                root.style.setProperty('--primary', '#fb923c'); 
+            } else {
+                // Re-apply current theme colors logic
+                // If we are in light mode, revert to the theme's defined colors
+                const t = themes.find(x => x.id === state.theme);
+                if(t) {
+                    root.style.setProperty('--text', t.colors.t);
+                    root.style.setProperty('--bg', t.colors.bg);
+                    root.style.setProperty('--primary', t.colors.p);
+                } else {
+                    // Fallback default
+                    root.style.setProperty('--text', '#1f2937');
+                    root.style.setProperty('--bg', '#fff7ed');
+                }
+            }
+        }
+
         function toggleSettings() { document.getElementById('settings-modal').classList.toggle('hide'); }
 
         // --- NAVIGATION & PLAYER POSITIONING (UPDATED) ---
