@@ -70,7 +70,7 @@
             /* Default Yellow/Gold */
 
             --font-size-base: 16px;
-            
+
             /* Resizable Side Nav Variable */
             --side-nav-width: 260px;
         }
@@ -149,7 +149,8 @@
 
         .animate-spin-slow {
             animation: spin-slow 8s linear infinite;
-            animation-play-state: paused; /* Default paused as per requirement */
+            animation-play-state: paused;
+            /* Default paused as per requirement */
         }
 
         @keyframes bounce-x {
@@ -188,12 +189,14 @@
 
         /* ---- SCROLLBAR OVERLAY GLASS EFFECT ---- */
         html {
-            overflow-y: overlay; /* Allows scrollbar to sit on top of content without taking space */
+            overflow-y: overlay;
+            /* Allows scrollbar to sit on top of content without taking space */
         }
 
         ::-webkit-scrollbar {
             width: 10px;
-            background: transparent; /* Transparent track */
+            background: transparent;
+            /* Transparent track */
         }
 
         ::-webkit-scrollbar-track {
@@ -202,7 +205,8 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background-color: rgba(var(--primary), 0.5); /* Semi-transparent thumb */
+            background-color: rgba(var(--primary), 0.5);
+            /* Semi-transparent thumb */
             /* In Tailwind, primary is var, so we use a hardcoded fallback or JS match. 
                Using a general transparent color here for glass effect */
             background-color: rgba(128, 128, 128, 0.3);
@@ -215,7 +219,7 @@
         ::-webkit-scrollbar-thumb:hover {
             background-color: rgba(128, 128, 128, 0.6);
         }
-        
+
         /* Helpers */
         .hide {
             display: none !important;
@@ -509,7 +513,8 @@
 
         /* Hover Playlist Icon Effect - REFINED */
         .player-art-container:hover::after {
-            content: '\f0ca'; /* fa-list-ul */
+            content: '\f0ca';
+            /* fa-list-ul */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             position: absolute;
@@ -521,7 +526,8 @@
             color: white;
             font-size: 1.2rem;
             cursor: pointer;
-            border-radius: 50%; /* Make sure overlay is circular */
+            border-radius: 50%;
+            /* Make sure overlay is circular */
             backdrop-filter: blur(2px);
             transition: opacity 0.3s;
         }
@@ -548,7 +554,7 @@
             z-index: 9998;
             animation: fadeOut 1s forwards;
         }
-        
+
         /* Floating Diya (Deep Daan) */
         .floating-diya {
             position: fixed;
@@ -560,11 +566,21 @@
         }
 
         @keyframes floatUp {
-            0% { transform: translateY(0) scale(1); opacity: 0; }
-            10% { opacity: 1; }
-            100% { transform: translateY(-300px) scale(1.5); opacity: 0; }
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-300px) scale(1.5);
+                opacity: 0;
+            }
         }
-        
+
         @keyframes fadeOut {
             to {
                 opacity: 0;
@@ -594,7 +610,8 @@
             transition: background 0.2s;
         }
 
-        #side-nav-resizer:hover, #side-nav-resizer.active {
+        #side-nav-resizer:hover,
+        #side-nav-resizer.active {
             background: var(--primary);
             opacity: 0.5;
         }
@@ -602,11 +619,11 @@
         .no-transition {
             transition: none !important;
         }
-        
+
         /* Updated Mobile Menu Transition: Start hidden (above) */
         #mobile-menu {
-             transition: transform 0.3s ease-in-out;
-             /* Default state is set via utility class -translate-y-full */
+            transition: transform 0.3s ease-in-out;
+            /* Default state is set via utility class -translate-y-full */
         }
     </style>
 </head>
@@ -963,7 +980,8 @@
                 <div id="desktop-bottom-player-container"></div>
 
                 <!-- NEW FEATURE: Share Button (Top Nav) -->
-                <button onclick="shareApp()" class="hidden lg:block text-primary hover:scale-110 transition" title="Share App">
+                <button onclick="shareApp()" class="hidden lg:block text-primary hover:scale-110 transition"
+                    title="Share App">
                     <i class="fas fa-share-alt text-xl"></i>
                 </button>
 
@@ -999,10 +1017,9 @@
         </div>
 
         <!-- SIDE NAVIGATION BAR (Modified for Resizability) -->
-        <nav id="side-nav"
-            style="width: var(--side-nav-width);"
+        <nav id="side-nav" style="width: var(--side-nav-width);"
             class="fixed left-0 top-0 h-full glass-panel z-50 transform -translate-x-full transition-transform duration-300 flex flex-col p-6 hide shadow-2xl bg-white dark:bg-slate-900 overflow-y-auto">
-            
+
             <!-- Resizer Handle -->
             <div id="side-nav-resizer"></div>
 
@@ -1128,30 +1145,30 @@
                             </div>
 
                             <!-- FEATURE BUTTONS CLUSTER -->
-                            <div class="absolute bottom-4 -right-4 md:-right-8 flex flex-col gap-2 z-20">
+                            <div class="absolute bottom-1 -right-4 md:-right-1 flex gap-2 z-20">
                                 <button onclick="offerFlowers()"
-                                    class="bg-secondary text-primary font-bold p-3 rounded-full shadow-lg hover:scale-110 transition border-2 border-white"
+                                    class="bg-secondary text-primary font-bold p-3 scale-90 rounded-full shadow-lg hover:scale-95 transition border-2 border-white"
                                     title="Offer Flowers (Pushpanjali)" data-feature="pushpanjali">
                                     <i class="fas fa-spa text-xl"></i>
                                 </button>
                                 <!-- FEATURE: VIRTUAL AARTI BUTTON -->
-                                <button onclick="toggleAartiMode()"
-                                    class="bg-orange-600 text-white font-bold p-3 rounded-full shadow-lg hover:scale-110 transition border-2 border-white"
+                                <!-- <button onclick="toggleAartiMode()"
+                                    class="bg-orange-600 text-white font-bold p-3 scale-90 rounded-full shadow-lg hover:scale-95 transition border-2 border-white"
                                     title="Perform Aarti" data-feature="aarti">
                                     <i class="fas fa-fire-alt text-xl"></i>
-                                </button>
+                                </button> -->
                                 <!-- NEW FEATURE: DEEP DAAN (Light a Lamp) -->
-                                <button onclick="toggleDeepDaan()"
-                                    class="bg-yellow-500 text-red-700 font-bold p-3 rounded-full shadow-lg hover:scale-110 transition border-2 border-white"
+                                <!-- <button onclick="toggleDeepDaan()"
+                                    class="bg-yellow-500 text-red-700 font-bold p-3 scale-90 rounded-full shadow-lg hover:scale-95 transition border-2 border-white"
                                     title="Light a Lamp (Deep Daan)">
                                     <i class="fas fa-lightbulb text-xl"></i>
-                                </button>
+                                </button> -->
                                 <!-- NEW FEATURE: DIVINE ORACLE -->
-                                <button onclick="toggleOracle()"
-                                    class="bg-purple-600 text-white font-bold p-3 rounded-full shadow-lg hover:scale-110 transition border-2 border-white"
+                                <!-- <button onclick="toggleOracle()"
+                                    class="bg-purple-600 text-white font-bold p-3 scale-90 rounded-full shadow-lg hover:scale-95 transition border-2 border-white"
                                     title="Seek Guidance (Prabhu Sandesh)">
                                     <i class="fas fa-question text-xl"></i>
-                                </button>
+                                </button> -->
                             </div>
 
                             <div id="flower-container"></div>
@@ -1167,7 +1184,8 @@
                         <div
                             class="glass-panel rounded-xl p-6 max-w-2xl mx-auto border-t-4 border-secondary transform hover:scale-105 transition-transform bg-black/40 backdrop-blur-md">
                             <h3 class="text-2xl font-bold text-secondary mb-2"><i class="fas fa-fire-alt mr-2"></i>
-                                <span data-key="melaTitle">महा मेला 2026</span></h3>
+                                <span data-key="melaTitle">महा मेला 2026</span>
+                            </h3>
                             <p class="text-white mb-4 font-bold tracking-wider" id="mela-date-display">30 April 2026</p>
                             <div class="grid grid-cols-4 gap-4 text-center text-white">
                                 <div><span id="days" class="text-3xl font-bold block text-secondary">00</span><span
@@ -1188,7 +1206,8 @@
                     <div class="glass-panel p-8 rounded-2xl shadow-xl max-w-6xl mx-auto relative overflow-hidden">
                         <div class="absolute top-0 left-0 w-full h-2 bg-primary"></div>
                         <h3 class="text-3xl font-bold text-center text-primary mb-8"><i class="far fa-clock mr-3"></i>
-                            <span data-key="templeScheduleTitle">दर्शन समय</span></h3>
+                            <span data-key="templeScheduleTitle">दर्शन समय</span>
+                        </h3>
 
                         <div
                             class="grid md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-300 dark:divide-gray-600">
@@ -1307,12 +1326,12 @@
                     <!-- Default Images -->
                     <div class="gallery-item rounded-xl overflow-hidden shadow-lg h-64 group relative border border-white/20 cursor-pointer"
                         onclick="openImagePreview(this)">
-                        <img src="https://images.unsplash.com/photo-1605634285806-c899d458634c?q=80"
+                        <img src="https://content3.jdmagicbox.com/v2/comp/sikar/q3/9999p1572.1572.190911003614.r5q3/catalogue/narsingh-ji-mandir-hasampur-sikar-temples-xsj3w5rrli.jpg"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <div class="gallery-item rounded-xl overflow-hidden shadow-lg h-64 group relative border border-white/20 cursor-pointer"
                         onclick="openImagePreview(this)">
-                        <img src="https://images.unsplash.com/photo-1623860064223-577d61166667?q=80"
+                        <img src="https://scontent.fjai1-3.fna.fbcdn.net/v/t51.82787-15/587951883_17967382274988920_6614558592535786365_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=GvxLczoJi3wQ7kNvwG4gDrG&_nc_oc=AdmoHOxBds9tmEOf8PMoOKMgzOrOjY41SeQdMgkNumK54emZ7ExDSUztZxd5gaUqXj9mAOPjFEf85f3sGkzGGBsq&_nc_zt=23&_nc_ht=scontent.fjai1-3.fna&_nc_gid=LlSbT4g79MNjH8dB3bESMg&oh=00_AfrtC0hymB9JoZHWulWMGOKTh0u3Su9bNnaM7K1UKd5bxQ&oe=696EAB15"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     </div>
                 </div>
@@ -1331,7 +1350,8 @@
                         onclick="toggleJapaMala()">
                         <div
                             class="bg-gradient-to-r from-orange-500 to-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-lg">
-                            <i class="fas fa-ring"></i></div>
+                            <i class="fas fa-ring"></i>
+                        </div>
                         <div>
                             <h4 class="font-bold text-primary">Digital Japa Mala</h4>
                             <p class="text-xs opacity-70">Interactive • Meditation</p>
@@ -1343,7 +1363,8 @@
                     <div class="glass-panel p-6 rounded-xl flex items-center gap-4 hover:bg-white/5 transition">
                         <div
                             class="bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center text-xl">
-                            <i class="fas fa-music"></i></div>
+                            <i class="fas fa-music"></i>
+                        </div>
                         <div>
                             <h4 class="font-bold">Narasimha Kavacham</h4>
                             <p class="text-xs opacity-70">Audio • 15 mins</p>
@@ -1355,7 +1376,8 @@
                     <div class="glass-panel p-6 rounded-xl flex items-center gap-4 hover:bg-white/5 transition">
                         <div
                             class="bg-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl">
-                            <i class="fas fa-book-open"></i></div>
+                            <i class="fas fa-book-open"></i>
+                        </div>
                         <div>
                             <h4 class="font-bold">Temple History PDF</h4>
                             <p class="text-xs opacity-70">Document • 2 MB</p>
@@ -1691,9 +1713,11 @@
                         <h3 class="font-bold text-xl text-secondary mb-4" data-key="footerLocationTitle">स्थान और लिंक
                         </h3>
                         <div class="rounded-lg overflow-hidden border border-gray-700 h-32 mb-4 bg-gray-800 relative">
-                            <iframe id="footer-map-frame"
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3700.651007515507!2d76.02246477554449!3d27.761745923089823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396d39db0417f251%3A0x1e678e4f685694d2!2sNarsingh%20Ji%20Bada%20Mandir!5e1!3m2!1sen!2sin!4v1768476864682!5m2!1sen!2sin" 
-                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <!-- <iframe id="footer-map-frame" -->
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3700.651007515507!2d76.02246477554449!3d27.761745923089823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396d39db0417f251%3A0x1e678e4f685694d2!2sNarsingh%20Ji%20Bada%20Mandir!5e1!3m2!1sen!2sin!4v1768476864682!5m2!1sen!2sin"
+                                width="600" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>
@@ -1999,11 +2023,11 @@
 
             // Toggle Rotation on all music disks
             const artElements = document.querySelectorAll('#music-disk-trigger img, .player-art-container img, #overlay-art, #mobile-menu-player-container img');
-            
+
             if (!audioPlayer.paused) {
                 if (overlayBtn) overlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 if (fullBarBtn) fullBarBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                
+
                 // Start rotation
                 artElements.forEach(img => {
                     img.style.animationPlayState = 'running';
@@ -2012,7 +2036,7 @@
             } else {
                 if (overlayBtn) overlayBtn.innerHTML = '<i class="fas fa-play pl-1"></i>';
                 if (fullBarBtn) fullBarBtn.innerHTML = '<i class="fas fa-play pl-0.5"></i>';
-                
+
                 // Pause rotation
                 artElements.forEach(img => {
                     img.style.animationPlayState = 'paused';
@@ -2087,10 +2111,10 @@
             ticker.classList.remove('hide');
             sideNav.classList.add('hide', '-translate-x-full');
             bottomNav.classList.add('hide');
-            
+
             // Remove hardcoded padding, we will use style if needed
-            mainLayout.style.paddingLeft = '0'; 
-            
+            mainLayout.style.paddingLeft = '0';
+
             footer.classList.remove('pb-32');
 
             // Controls Reset
@@ -2121,7 +2145,7 @@
                     sideNav.classList.remove('hide', '-translate-x-full');
                     // Use dynamic padding based on resizable width
                     mainLayout.style.paddingLeft = 'var(--side-nav-width)';
-                    
+
                     // Hide Top Nav elements that are in Side Nav
                     document.getElementById('top-menu-items').classList.add('hide');
                     document.getElementById('top-nav-search-btn').classList.add('hide');
@@ -2223,15 +2247,15 @@
                     // OPEN IT
                     sideNav.classList.remove('-translate-x-full');
                     mainLayout.style.paddingLeft = 'var(--side-nav-width)';
-                    
+
                     // Button becomes X
                     desktopBurger.innerHTML = '<i class="fas fa-times"></i>';
-                    desktopBurger.classList.add('rotate-90'); 
+                    desktopBurger.classList.add('rotate-90');
                 } else {
                     // CLOSE IT
                     sideNav.classList.add('-translate-x-full');
                     mainLayout.style.paddingLeft = '0';
-                    
+
                     // Button becomes Hamburger
                     desktopBurger.innerHTML = '<i class="fas fa-bars"></i>';
                     desktopBurger.classList.remove('rotate-90');
@@ -2264,7 +2288,7 @@
             // Only close if in side mode AND active AND Mobile
             const sideNav = document.getElementById('side-nav');
             const isDesktop = window.innerWidth >= 1024;
-            
+
             if (state.navStyle !== 'side' || isDesktop || sideNav.classList.contains('hide')) return;
 
             // Only strictly enforce closing via overlay on mobile, or toggle on desktop
@@ -2286,23 +2310,23 @@
             const resizer = document.getElementById('side-nav-resizer');
             const sideNav = document.getElementById('side-nav');
             const mainLayout = document.getElementById('main-layout');
-            
+
             let isResizing = false;
-            
+
             resizer.addEventListener('mousedown', (e) => {
                 e.preventDefault();
                 isResizing = true;
                 document.body.style.cursor = 'col-resize';
                 resizer.classList.add('active');
-                
+
                 // Disable transitions to prevent lag
                 sideNav.classList.add('no-transition');
                 mainLayout.classList.add('no-transition');
-                
+
                 document.addEventListener('mousemove', resize);
                 document.addEventListener('mouseup', stopResize);
             });
-            
+
             // For Touch Support
             resizer.addEventListener('touchstart', (e) => {
                 isResizing = true;
@@ -2315,20 +2339,20 @@
 
             function resize(e) {
                 if (!isResizing) return;
-                
+
                 let clientX;
-                if(e.type.includes('touch')) {
+                if (e.type.includes('touch')) {
                     clientX = e.touches[0].clientX;
                 } else {
                     clientX = e.clientX;
                 }
-                
+
                 // Constraints
                 let newWidth = clientX;
                 if (newWidth < 200) newWidth = 200;
                 if (newWidth > 600) newWidth = 600;
                 if (newWidth > window.innerWidth - 50) newWidth = window.innerWidth - 50;
-                
+
                 document.documentElement.style.setProperty('--side-nav-width', newWidth + 'px');
             }
 
@@ -2338,7 +2362,7 @@
                 resizer.classList.remove('active');
                 sideNav.classList.remove('no-transition');
                 mainLayout.classList.remove('no-transition');
-                
+
                 document.removeEventListener('mousemove', resize);
                 document.removeEventListener('mouseup', stopResize);
                 document.removeEventListener('touchmove', resize);
@@ -2358,10 +2382,10 @@
                 togglePlayerOverlay();
             }
         }
-        
+
         // --- MOBILE TOP NAV ANIMATION FIX ---
-        function toggleMobileMenu() { 
-            document.getElementById('mobile-menu').classList.toggle('-translate-y-full'); 
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('-translate-y-full');
         }
 
         // ... (Existing Feature Functions: Aarti, Sankalp, Panchang, Visitor, Admin, etc.)
@@ -2524,7 +2548,7 @@
                 msgEl.style.opacity = 1;
             }, 300);
         }
-        
+
         // --- NEW FEATURE: DEEP DAAN (LIGHT A LAMP) ---
         function toggleDeepDaan() {
             const container = document.getElementById('flower-container');
@@ -2534,11 +2558,11 @@
             diya.style.left = Math.random() * 80 + 10 + '%';
             diya.style.bottom = "50px";
             container.appendChild(diya);
-            
+
             showToast("Deep Daan Offered 🙏");
             setTimeout(() => diya.remove(), 4000);
         }
-        
+
         // --- NEW FEATURE: SHARE APP ---
         function shareApp() {
             const data = {
@@ -2546,7 +2570,7 @@
                 text: "Join me in virtual darshan of Sri Narsimha Bhagwan!",
                 url: window.location.href
             };
-            
+
             if (navigator.share) {
                 navigator.share(data).catch(console.error);
             } else {
@@ -2816,7 +2840,7 @@
             document.getElementById(viewId).classList.remove('hide');
             // Hide mobile menu on switch (by adding the negative translate class back)
             document.getElementById('mobile-menu').classList.add('-translate-y-full');
-            
+
             window.scrollTo(0, 0);
             state.activeView = viewId;
             renderNavigation();
